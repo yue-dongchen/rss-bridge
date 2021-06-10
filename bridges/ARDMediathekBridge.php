@@ -33,9 +33,9 @@ class ARDMediathekBridge extends BridgeAbstract {
       $item = array();
       $item['uri'] = $video->href;
 	    echo($video);
-	    echo($video->find('h3'), 0);
+	    echo($video->find('h3'));
 	//    echo($video->find('div.Line-epbftj-1'));
-      $item['title'] = $video->find('h3', 0)->innertext;
+      $item['title'] = $video->find('h3')->innertext;
       // $item['timestamp'] = strtotime($video->find('div.Line-epbftj-1')->plaintext);
       // $item['enclosures']
       // $item['uid']

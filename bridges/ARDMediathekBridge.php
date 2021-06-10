@@ -29,7 +29,7 @@ class ARDMediathekBridge extends BridgeAbstract {
 			returnServerError('No response for' . $this->getURI() . '!');
     $html = defaultLinkTo($html, $this->getURI());
 
-    foreach($html->find('a.Root-sc-1ytw7qu-0') as $video {
+    foreach($html->find('a.Root-sc-1ytw7qu-0') as $video) {
       $item = array();
       $item['uri'] = $video->href;
 	    //echo($video);

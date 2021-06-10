@@ -9,7 +9,7 @@ class ARDMediathekBridge extends BridgeAbstract {
       'name' => 'URI',
       'required' => true,
       'exampleValue' => 'https://www.ardmediathek.de/sendung/45-min/Y3JpZDovL25kci5kZS8xMzkx/'
-    );
+    )
   ); // Can be omitted!
 	const CACHE_TIMEOUT = 3600; // Can be omitted!
 

@@ -29,13 +29,13 @@ class ARDMediathekBridge extends BridgeAbstract {
 			returnServerError('No response for' . $this->getURI() . '!');
     $html = defaultLinkTo($html, $this->getURI());
 
-    foreach($html->find('a.Root-sc-1ytw7qu-0') as $video) {
+    foreach($html->find('a.Root-sc-1ytw7qu-0') as $video {
       $item = array();
       $item['uri'] = $video->href;
-	    echo($video);
-	    echo($video->find('h3'));
+	    //echo($video);
+	    //echo($video->find('h3'));
 	//    echo($video->find('div.Line-epbftj-1'));
-      $item['title'] = $video->find('h3')->innertext;
+      $item['title'] = $this->html->find('h3.H3-sc-1h18a06-4');
       // $item['timestamp'] = strtotime($video->find('div.Line-epbftj-1')->plaintext);
       // $item['enclosures']
       // $item['uid']

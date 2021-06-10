@@ -21,7 +21,7 @@ class ARDMediathekBridge extends BridgeAbstract {
   }
 
 	public function collectData() {
-    $html = getSimpleHTMLDOM($this->getURI())
+    $html = getSimpleHTMLDOM($this->getURI());
     if(!$html)
 			returnServerError('No response for' . $this->getURI() . '!');
     $html = defaultLinkTo($html, $this->getURI());
@@ -30,7 +30,7 @@ class ARDMediathekBridge extends BridgeAbstract {
       $item = array();
       $item['uri'] = $video->href;
 
-      $item['title'] = $video->find('h3.H3-sc-1h18a06-4')->innertext
+      $item['title'] = $video->find('h3.H3-sc-1h18a06-4')->innertext;
       $item['timestamp'] = strtotime(video->find('div.Line-epbftj-1')->plaintext);
       // $item['enclosures']
       // $item['uid']

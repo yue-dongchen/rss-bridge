@@ -4,12 +4,15 @@ class ARDMediathekBridge extends BridgeAbstract {
 	const URI = 'https://www.ardmediathek.de/';
 	const DESCRIPTION = 'Feed of any series in the ARD-Mediathek, specified by its URI';
 	const MAINTAINER = 'yue_dongchen';
+
 	const PARAMETERS = array(
-    'uri' => array(
+    array(
+'uri' => array(
+
       'name' => 'URI',
       'required' => true,
-      'exampleValue' => 'https://www.ardmediathek.de/sendung/45-min/Y3JpZDovL25kci5kZS8xMzkx/'
-    )
+      'defaultValue' => 'https://www.ardmediathek.de/sendung/45-min/Y3JpZDovL25kci5kZS8xMzkx/'
+    ))
   ); // Can be omitted!
 	const CACHE_TIMEOUT = 3600; // Can be omitted!
 

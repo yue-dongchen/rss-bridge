@@ -6,19 +6,17 @@ class ARDMediathekBridge extends BridgeAbstract {
 	const MAINTAINER = 'yue_dongchen';
 
 	const PARAMETERS = array(
-    array(
-'uri' => array(
-
-      'name' => 'URI',
-      'required' => true,
-      'defaultValue' => 'https://www.ardmediathek.de/sendung/45-min/Y3JpZDovL25kci5kZS8xMzkx/'
+		array(
+			'uri' => array(
+				'name' => 'URI',
+				'required' => true,
+				'defaultValue' => '45-min/Y3JpZDovL25kci5kZS8xMzkx/'
     ))
-  ); // Can be omitted!
-	const CACHE_TIMEOUT = 3600; // Can be omitted!
+  );
 
   public function getURI() {
     if(!is_null($uri = $this->getInput('uri')))
-			return $uri;
+			return 'https://www.ardmediathek.de/sendung/' . $uri;
 
     return parent::getURI();
   }
@@ -37,9 +35,7 @@ class ARDMediathekBridge extends BridgeAbstract {
       $item['timestamp'] = strtotime(mb_substr($video->find('div.Line-epbftj-1', 0)->plaintext, 0, 10));
       $item['enclosures'] = array(
 				$item['uri']
-				// $video->find('img', 0)->src
 			);
-      // $item['uid']
       $this->items[] = $item;
     }
 	}

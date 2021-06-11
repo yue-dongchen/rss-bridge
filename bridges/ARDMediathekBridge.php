@@ -1,7 +1,7 @@
 <?php
 class ARDMediathekBridge extends BridgeAbstract {
 	const NAME = 'ARD-Mediathek Bridge';
-	const URI = 'https://www.ardmediathek.de/';
+	const URI = 'https://www.ardmediathek.de';
 	const DESCRIPTION = 'Feed of any series in the ARD-Mediathek, specified by its URI';
 	const MAINTAINER = 'yue_dongchen';
 

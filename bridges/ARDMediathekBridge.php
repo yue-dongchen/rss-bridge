@@ -32,12 +32,11 @@ class ARDMediathekBridge extends BridgeAbstract {
     foreach($html->find('a.Root-sc-1ytw7qu-0') as $video) {
       $item = array();
       $item['uri'] = $video->href;
-	    //echo($video);
-	    //echo($video->find('h3'));
-	//    echo($video->find('div.Line-epbftj-1'));
       $item['title'] = $video->find('h3', 0)->plaintext;
       // $item['timestamp'] = strtotime($video->find('div.Line-epbftj-1')->plaintext);
-      // $item['enclosures']
+      $item['enclosures'] = array(
+				$video->find('img', 0)->src
+			);
       // $item['uid']
       $this->items[] = $item;
     }

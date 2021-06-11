@@ -11,32 +11,34 @@ class ARDMediathekBridge extends BridgeAbstract {
 				'name' => 'URI',
 				'required' => true,
 				'defaultValue' => '45-min/Y3JpZDovL25kci5kZS8xMzkx/'
-    ))
-  );
+			)
+		)
+	);
 
-  public function getURI() {
-    if(!is_null($uri = $this->getInput('uri')))
+	public function getURI() {
+		if(!is_null($uri = $this->getInput('uri')))
 			return 'https://www.ardmediathek.de/sendung/' . $uri;
 
-    return parent::getURI();
-  }
+		return parent::getURI();
+	}
 
 	public function collectData() {
-    $html = getSimpleHTMLDOM($this->getURI());
-    if(!$html)
+		$html = getSimpleHTMLDOM($this->getURI());
+		if(!$html)
 			returnServerError('No response for' . $this->getURI() . '!');
-    $html = defaultLinkTo($html, $this->getURI());
+		$html = defaultLinkTo($html, $this->getURI());
 
-    foreach($html->find('a.Root-sc-1ytw7qu-0') as $video) {
-      $item = array();
-      $item['uri'] = $video->href;
-      $item['title'] = $video->find('h3', 0)->plaintext;
+		foreach($html->find('a.Root-sc-1ytw7qu-0') as $video) {
+			$item = array();
+			$item['uri'] = $video->href;
+			$item['title'] = $video->find('h3', 0)->plaintext;
 			$item['content'] = '<img src="' . $video->find('img', 0)->src . '" />';
-      $item['timestamp'] = strtotime(mb_substr($video->find('div.Line-epbftj-1', 0)->plaintext, 0, 10));
-      $item['enclosures'] = array(
+			$item['timestamp'] = strtotime(mb_substr($video->find('div.Line-epbftj-1', 0)->plaintext, 0, 10));
+			$item['enclosures'] = array(
 				$item['uri']
 			);
-      $this->items[] = $item;
-    }
+			
+			$this->items[] = $item;
+		}
 	}
 }

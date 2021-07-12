@@ -15,19 +15,13 @@ class ARDMediathekBridge extends BridgeAbstract {
 			)
 		)
 	);
-	
-	public function makeURL() {
-// 		if(!is_null($path = $this->getInput('path')))
-// 			return 'https://www.ardmediathek.de/sendung/' . $path;
-// 		
-// 		return parent::makeURL();
-		return 'https://www.ardmediathek.de/sendung/' . $this->getInput('path') . '/';
-	}
-	
+
 	public function collectData() {
 		date_default_timezone_set('Europe/Berlin');
-		$html = getSimpleHTMLDOM($this->makeURL());
-		$html = defaultLinkTo($html, $this->makeURL());
+		
+		$url = 'https://www.ardmediathek.de/sendung/' . $this->getInput('path') . '/';
+		$html = getSimpleHTMLDOM($url);
+		$html = defaultLinkTo($html, $url);
 
 		foreach($html->find('a.Root-sc-1ytw7qu-0') as $video) {
 			$item = array();

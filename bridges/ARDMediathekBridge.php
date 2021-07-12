@@ -1,32 +1,34 @@
 <?php
 class ARDMediathekBridge extends BridgeAbstract {
+	date_default_timezone_set('Europe/Berlin');
+	
 	const NAME = 'ARD-Mediathek Bridge';
 	const URI = 'https://www.ardmediathek.de';
 	const DESCRIPTION = 'Feed of any series in the ARD-Mediathek, specified by its URI';
 	const MAINTAINER = 'yue_dongchen';
-
+	
 	const PARAMETERS = array(
 		array(
-			'uri' => array(
-				'name' => 'URI',
+			'path' => array(
+				'name' => 'Path',
 				'required' => true,
-				'defaultValue' => '45-min/Y3JpZDovL25kci5kZS8xMzkx/'
+				'title' => 'Enter without trailing slash',
+				'defaultValue' => '45-min/Y3JpZDovL25kci5kZS8xMzkx'
 			)
 		)
 	);
-
-	public function getURI() {
-		if(!is_null($uri = $this->getInput('uri')))
-			return 'https://www.ardmediathek.de/sendung/' . $uri;
-
-		return parent::getURI();
+	
+	public function makeURL() {
+// 		if(!is_null($path = $this->getInput('path')))
+// 			return 'https://www.ardmediathek.de/sendung/' . $path;
+// 		
+// 		return parent::makeURL();
+		return 'https://www.ardmediathek.de/sendung/' . $path . '/';
 	}
-
+	
 	public function collectData() {
-		$html = getSimpleHTMLDOM($this->getURI());
-		if(!$html)
-			returnServerError('No response for' . $this->getURI() . '!');
-		$html = defaultLinkTo($html, $this->getURI());
+		$html = getSimpleHTMLDOM($this->makeURL());
+		$html = defaultLinkTo($html, $this->makeURL());
 
 		foreach($html->find('a.Root-sc-1ytw7qu-0') as $video) {
 			$item = array();

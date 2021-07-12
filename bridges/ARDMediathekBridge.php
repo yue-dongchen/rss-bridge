@@ -1,7 +1,5 @@
 <?php
 class ARDMediathekBridge extends BridgeAbstract {
-	date_default_timezone_set('Europe/Berlin');
-	
 	const NAME = 'ARD-Mediathek Bridge';
 	const URI = 'https://www.ardmediathek.de';
 	const DESCRIPTION = 'Feed of any series in the ARD-Mediathek, specified by its URI';
@@ -27,6 +25,7 @@ class ARDMediathekBridge extends BridgeAbstract {
 	}
 	
 	public function collectData() {
+		date_default_timezone_set('Europe/Berlin');
 		$html = getSimpleHTMLDOM($this->makeURL());
 		$html = defaultLinkTo($html, $this->makeURL());
 

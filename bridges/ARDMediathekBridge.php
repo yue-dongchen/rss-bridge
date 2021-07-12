@@ -21,7 +21,7 @@ class ARDMediathekBridge extends BridgeAbstract {
 // 			return 'https://www.ardmediathek.de/sendung/' . $path;
 // 		
 // 		return parent::makeURL();
-		return 'https://www.ardmediathek.de/sendung/' . $path . '/';
+		return 'https://www.ardmediathek.de/sendung/' . $this->getInput('path') . '/';
 	}
 	
 	public function collectData() {
